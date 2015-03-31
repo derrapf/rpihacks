@@ -82,7 +82,11 @@ class Luxmeter:
            ambient *= 16    # scale 1x to 16x
            IR *= 16         # scale 1x to 16x
                        
-        ratio = (IR / float(ambient)) # changed to make it run under python 2
+        # Check if ambient is 0 to avoid division by zero error
+        if (float(ambient) == 0):
+           ratio = 0
+        else:
+           ratio = (IR / float(ambient)) # changed to make it run under python 2
 
         if (self.debug):
             print "IR Result", IR
